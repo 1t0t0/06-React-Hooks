@@ -1,29 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const App = () => {
-  const [count, setCount] = useState(0)
-  const [name, setName] = useState("Ttoto Phandolack")
+  const inputElem = useRef();
 
-  useEffect(() => {
-
-    setTimeout(() => {
-      setCount(count => count + 1)
-    }, 2000)
-
-  }, [count, name])
-
-
+  const btnClicked = () => {
+    console.log(inputElem.current);
+    inputElem.current.style.background = 'green';
+  };
 
   return (
-
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="text-center">
-        <h1 className="text-3xl font-bold">I've rendered {count} times</h1>
+        <input
+          type="text"
+          ref={inputElem}
+          className="border border-gray-300 rounded px-4 py-2 mb-4 focus:outline-none"
+        />
+        <button
+          onClick={btnClicked}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Click Here
+        </button>
       </div>
     </div>
-
-
-  )
+  );
 };
 
 export default App;
